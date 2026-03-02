@@ -60,7 +60,7 @@ const Home = () => {
     return matchesFolder && matchesFilter;
   });
 
-  const tutorialsWithoutFolder = tutorials.filter(t => !t.folderId);
+  //const tutorialsWithoutFolder = tutorials.filter(t => !t.folderId);
 
   const getFolderTutorials = (folderId) => {
     return tutorials.filter(t => t.folderId === folderId);

@@ -2,13 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
   getTutorial, 
-  getTutorialProducts, 
-  checkTutorialCompatibility,
   updateTutorial,
   deleteTutorial,
   getFolders,
-  createFolder,
-  deleteProductFromStep
+  createFolder
 } from '../services/api';
 import '../styles/TutorialDetail.css';
 
@@ -16,8 +13,6 @@ const TutorialDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [tutorial, setTutorial] = useState(null);
-  const [products, setProducts] = useState([]);
-  const [compatibility, setCompatibility] = useState(null);
   const [folders, setFolders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showFolderSelect, setShowFolderSelect] = useState(false);
@@ -28,20 +23,17 @@ const TutorialDetail = () => {
 
   useEffect(() => {
     loadTutorialData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const loadTutorialData = async () => {
     try {
-      const [tutorialData, productsData, compatData, foldersData] = await Promise.all([
+      const [tutorialData, foldersData] = await Promise.all([
         getTutorial(id),
-        getTutorialProducts(id),
-        checkTutorialCompatibility(id),
         getFolders()
       ]);
       
       setTutorial(tutorialData.tutorial);
-      setProducts(productsData.products || []);
-      setCompatibility(compatData.analysis);
       setFolders(foldersData.folders || []);
     } catch (error) {
       console.error('Error loading tutorial:', error);
@@ -103,28 +95,6 @@ const TutorialDetail = () => {
     } catch (error) {
       console.error('Error deleting tutorial:', error);
       alert('Failed to delete tutorial');
-    }
-  };
-
-  const handleDeleteProduct = async (product) => {
-    if (!window.confirm(`Are you sure you want to remove "${product.name}" from this tutorial?`)) {
-      return;
-    }
-
-    try {
-      const stepsWithProduct = tutorial.steps.filter(step => 
-        step.stepProducts.some(sp => sp.product.id === product.id)
-      );
-
-      for (const step of stepsWithProduct) {
-        await deleteProductFromStep(step.id, product.id);
-      }
-
-      await loadTutorialData();
-      alert('Product removed successfully!');
-    } catch (error) {
-      console.error('Error deleting product:', error);
-      alert('Failed to delete product');
     }
   };
 
@@ -281,60 +251,13 @@ const TutorialDetail = () => {
         Start Tutorial
       </button>
 
-      {/* Commenting out until product detection is ready */}
-      {/* {compatibility && (
-        <div className="compatibility-info">
-          <div className="completion-bar">
-            <div 
-              className="completion-fill" 
-              style={{ width: `${compatibility.completionPercentage}%` }}
-            />
-          </div>
-          <p className="compatibility-text">
-            You have {compatibility.haveCount} of {compatibility.totalProducts} products
-            ({compatibility.completionPercentage}%)
-          </p>
-          {compatibility.needCount > 0 && (
-            <p className="missing-text">
-              Missing {compatibility.needCount} product{compatibility.needCount > 1 ? 's' : ''}
-            </p>
-          )}
-        </div>
-      )} */}
-
       <div className="products-section">
         <h2>Products Used</h2>
-        {/* Coming soon message - can easily swap back to products list later */}
         <div className="coming-soon-box">
           <p className="coming-soon-icon">🔮</p>
           <p className="coming-soon-text">Product detection coming soon!</p>
           <p className="coming-soon-subtext">We're working on AI-powered product recognition</p>
         </div>
-        
-        {/* Keeping this code commented for when we add AI detection */}
-        {/* {products.length > 0 ? (
-          <div className="products-list">
-            {products.map(product => (
-              <div key={product.id} className="product-item">
-                <div className="product-info">
-                  <p className="product-name">{product.name}</p>
-                  {product.brand && (
-                    <p className="product-brand">{product.brand}</p>
-                  )}
-                </div>
-                <button
-                  className="delete-product-btn"
-                  onClick={() => handleDeleteProduct(product)}
-                  title="Remove product"
-                >
-                  🗑️
-                </button>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="no-products">No products added yet</p>
-        )} */}
       </div>
     </div>
   );
