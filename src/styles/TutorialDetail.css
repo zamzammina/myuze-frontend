@@ -1,0 +1,351 @@
+.tutorial-detail {
+  padding-bottom: 2rem;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--dark-brown);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--dark-brown);
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100;
+  min-width: 200px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.menu-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.menu-dropdown button:hover {
+  background: var(--cream);
+}
+
+.menu-dropdown button.danger {
+  color: #d32f2f;
+}
+
+.menu-dropdown button.danger:hover {
+  background: #ffebee;
+}
+
+.tutorial-header {
+  margin-bottom: 2rem;
+}
+
+.tutorial-hero {
+  width: 100%;
+  aspect-ratio: 9/16;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.tutorial-header h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.current-folder {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--beige);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--dark-brown);
+  margin-top: 0.5rem;
+}
+
+.result-photo-section {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: var(--cream);
+  border-radius: 12px;
+}
+
+.result-photo-section h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  color: var(--text-dark);
+}
+
+.result-photo {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.start-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--dark-brown);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.compatibility-info {
+  background-color: var(--cream);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.completion-bar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--beige);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.completion-fill {
+  height: 100%;
+  background-color: var(--medium-brown);
+  transition: width 0.3s ease;
+}
+
+.compatibility-text {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.missing-text {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.products-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.product-item {
+  padding: 1rem;
+  background-color: var(--white);
+  border: 1px solid var(--beige);
+  border-radius: 8px;
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.product-brand {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.no-products {
+  text-align: center;
+  color: var(--text-light);
+  padding: 2rem;
+}
+
+.folder-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.folder-option {
+  padding: 1rem;
+  border: 2px solid var(--beige);
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.folder-option:hover {
+  border-color: var(--dark-brown);
+  background: var(--cream);
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--dark-brown);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+}
+
+.btn-link:hover {
+  color: var(--medium-brown);
+}
+
+.new-folder-section {
+  margin: 1.5rem 0;
+}
+
+.folder-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--beige);
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.folder-input:focus {
+  outline: none;
+  border-color: var(--dark-brown);
+}
+
+.folder-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.folder-actions button {
+  flex: 1;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--dark-brown);
+  color: white;
+}
+
+.btn-small:hover {
+  background-color: var(--medium-brown);
+}
+
+.btn-small:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-small.btn-secondary {
+  background-color: var(--beige);
+  color: var(--text-dark);
+}
+.delete-product-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #d32f2f;
+  flex-shrink: 0;
+}
+
+.delete-product-btn:hover {
+  opacity: 0.7;
+}
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--white);
+  border: 1px solid var(--beige);
+  border-radius: 8px;
+}
+
+.coming-soon-box {
+  background: linear-gradient(135deg, #f5f3f0 0%, #e8e4df 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.coming-soon-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--dark-brown), var(--medium-brown), var(--dark-brown));
+  opacity: 0.3;
+}
+
+.coming-soon-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.6;
+}
+
+.coming-soon-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.coming-soon-subtext {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-weight: 400;
+}

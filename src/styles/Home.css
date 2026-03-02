@@ -1,0 +1,375 @@
+.home-screen {
+  padding-bottom: 5rem;
+}
+
+.home-header {
+  padding: 1rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.home-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--dark-brown);
+}
+
+/* Folders Section */
+.folders-section {
+  margin-bottom: 2rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.dropdown-arrow {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  transition: transform 0.3s;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.folders-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.folder-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid var(--beige);
+}
+
+.folder-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.folder-card.new-folder {
+  border: 2px dashed var(--dark-brown);
+  background: var(--cream);
+}
+
+.folder-thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+  background: var(--beige);
+}
+
+.folder-thumbnail {
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.folder-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.folder-thumbnail.empty {
+  background: var(--beige);
+}
+
+.folder-thumbnail-grid.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+}
+
+.add-icon {
+  font-size: 3rem;
+  color: var(--dark-brown);
+  font-weight: 300;
+}
+
+.folder-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.folder-count {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.folder-card.new-folder-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+}
+
+.folder-card.new-folder-input input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--beige);
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.folder-card.new-folder-input input:focus {
+  outline: none;
+  border-color: var(--dark-brown);
+}
+
+.folder-input-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.folder-input-actions button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.folder-input-actions button:first-child {
+  background: var(--dark-brown);
+  color: white;
+}
+
+.folder-input-actions button:first-child:hover {
+  background: var(--medium-brown);
+}
+
+.folder-input-actions button:last-child {
+  background: var(--beige);
+  color: var(--text-dark);
+}
+
+.folder-input-actions button:last-child:hover {
+  background: var(--cream);
+}
+
+.folder-input-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tutorials Section */
+.tutorials-section {
+  margin-top: 2rem;
+}
+
+.back-to-all {
+  background: none;
+  border: none;
+  color: var(--dark-brown);
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+}
+
+.back-to-all:hover {
+  text-decoration: underline;
+}
+
+.tutorials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.tutorial-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--beige);
+}
+
+.tutorial-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tutorial-thumbnail {
+  width: 100%;
+  aspect-ratio: 9/16;
+  object-fit: cover;
+}
+
+.tutorial-info {
+  padding: 0.75rem;
+}
+
+.tutorial-info h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.folder-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--beige);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: var(--dark-brown);
+}
+
+.add-button {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.5rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--dark-brown);
+  color: var(--white);
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+  z-index: 100;
+}
+
+.add-button:hover {
+  transform: scale(1.1);
+}
+
+.add-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+/* Processing Overlay */
+.processing-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(44, 37, 32, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.processing-modal {
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 1rem;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid var(--beige);
+  border-top-color: var(--dark-brown);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.processing-modal h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.processing-modal p {
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.progress-info {
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.progress-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-brown);
+  margin-bottom: 0.75rem !important;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--beige);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--dark-brown);
+  transition: width 0.3s ease;
+}
+
+.status-text {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.processing-tip {
+  color: var(--medium-brown);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .add-button {
+    right: 1rem;
+  }
+}

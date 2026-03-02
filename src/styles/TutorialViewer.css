@@ -1,0 +1,205 @@
+.tutorial-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--text-dark);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.step-counter {
+  text-align: center;
+  color: var(--white);
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.step-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.step-gif {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.step-products {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+.step-products h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.step-product p {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.step-product span {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.navigation-controls {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.nav-button {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.nav-button.primary {
+  background-color: var(--dark-brown);
+  border-color: var(--dark-brown);
+}
+
+.nav-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.camera-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.camera-screen h2 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.camera-button {
+  padding: 1.5rem 3rem;
+  background-color: var(--dark-brown);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.skip-button {
+  padding: 1rem 2rem;
+  background-color: var(--beige);
+  color: var(--text-dark);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.camera-hint {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.camera-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.step-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--cream);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.product-details {
+  flex: 1;
+}
+
+.product-name {
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.product-brand {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.add-to-kit-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--dark-brown);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.add-to-kit-btn:hover {
+  transform: scale(1.1);
+  background-color: var(--medium-brown);
+}
+.viewer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.delete-step-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #d32f2f;
+}
+
+.delete-step-button:hover {
+  opacity: 0.7;
+}
