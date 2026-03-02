@@ -131,9 +131,6 @@ const TutorialDetail = () => {
             <button onClick={() => { setShowFolderSelect(true); setShowMenu(false); }}>
               📁 Move to Folder
             </button>
-            <button onClick={handleOpenOriginal}>
-              🔗 View Original Video
-            </button>
             <button onClick={handleDeleteTutorial} className="danger">
               🗑️ Delete Tutorial
             </button>
@@ -231,6 +228,21 @@ const TutorialDetail = () => {
         {tutorial.folder && (
           <span className="current-folder">📁 {tutorial.folder.name}</span>
         )}
+
+        {/* Link to original video right under hero */}
+        <button 
+          className="original-video-link"
+          onClick={handleOpenOriginal}
+        >
+          🔗 View Original Video
+        </button>
+
+        <button 
+          className="start-button"
+          onClick={() => navigate(`/tutorial/${id}/view`)}
+        >
+          Start Tutorial
+        </button>
         
         {tutorial.resultPhotoUrl && (
           <div className="result-photo-section">
@@ -243,13 +255,6 @@ const TutorialDetail = () => {
           </div>
         )}
       </div>
-
-      <button 
-        className="start-button"
-        onClick={() => navigate(`/tutorial/${id}/view`)}
-      >
-        Start Tutorial
-      </button>
 
       <div className="products-section">
         <h2>Products Used</h2>
