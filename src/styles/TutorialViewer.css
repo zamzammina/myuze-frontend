@@ -239,7 +239,7 @@
 
 .navigation-controls {
   position: fixed;
-  bottom: 6rem; /* Changed from 5rem to give more space */
+  bottom: 7.5rem; /* Much higher now */
   left: 0;
   right: 0;
   display: flex;
@@ -247,11 +247,12 @@
   padding: 0 1rem;
   max-width: 600px;
   margin: 0 auto;
-  background: linear-gradient(to top, rgba(246, 242, 238, 0.95) 70%, transparent);
+  background: linear-gradient(to top, rgba(246, 242, 238, 0.98) 80%, transparent);
   backdrop-filter: blur(10px);
-  padding-top: 2rem;
-  padding-bottom: 1.5rem; /* Increased padding */
+  padding-top: 2.5rem;
+  padding-bottom: 2rem; /* More padding */
 }
+
 
 .nav-button {
   flex: 1;
@@ -402,7 +403,7 @@
 }
 
 .skip-button:hover:not(:disabled) {
-  background: rgba(198, 173, 149, 0.3);
+  background: rgba(40, 37, 34, 0.3);
   box-shadow: var(--shadow-md);
 }
 
@@ -411,9 +412,8 @@
   cursor: not-allowed;
 }
 
-/* Responsive */
 @media (max-width: 480px) {
   .navigation-controls {
-    bottom: 6rem; /* Changed from 4.5rem */
+    bottom: 7.5rem; /* Much higher */
   }
 }
