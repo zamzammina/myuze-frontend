@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { Home, Sparkles, User } from 'lucide-react';
 import '../styles/Layout.css';
 
 const Layout = () => {
@@ -24,7 +25,7 @@ const Layout = () => {
           className={`nav-item ${isActive('/') ? 'active' : ''}`}
           onClick={() => navigate('/')}
         >
-          <div className="nav-icon">🏠</div>
+          <Home className="nav-icon" size={22} strokeWidth={2} />
           <span className="nav-label">Home</span>
         </button>
         
@@ -32,7 +33,7 @@ const Layout = () => {
           className={`nav-item ${isActive('/kit') ? 'active' : ''}`}
           onClick={() => navigate('/kit')}
         >
-          <div className="nav-icon">💄</div>
+          <Sparkles className="nav-icon" size={22} strokeWidth={2} />
           <span className="nav-label">My Kit</span>
         </button>
         
@@ -40,7 +41,7 @@ const Layout = () => {
           className={`nav-item ${isActive('/profile') ? 'active' : ''}`}
           onClick={() => navigate('/profile')}
         >
-          <div className="nav-icon">👤</div>
+          <User className="nav-icon" size={22} strokeWidth={2} />
           <span className="nav-label">Profile</span>
         </button>
       </nav>

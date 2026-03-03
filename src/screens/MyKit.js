@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getKit, toggleKitItem, addProductToStep, getTutorials, addToKit } from '../services/api';
+import { Check, ShoppingCart, Plus } from 'lucide-react';
 import '../styles/MyKit.css';
+import { Check, ShoppingCart, Plus, Sparkles } from 'lucide-react';
 
 const MyKit = () => {
   const [kit, setKit] = useState({ have: [], need: [] });
@@ -107,7 +109,8 @@ const MyKit = () => {
           className="add-product-btn btn-ripple"
           onClick={() => setShowAddProduct(true)}
         >
-          + Add
+          <Plus size={18} strokeWidth={2} />
+          Add
         </button>
       </div>
 
@@ -117,7 +120,7 @@ const MyKit = () => {
           className={`stat clickable ${activeTab === 'have' ? 'active' : ''}`}
           onClick={() => setActiveTab('have')}
         >
-          <div className="stat-icon">✓</div>
+          <Check className="stat-icon" size={28} strokeWidth={2} />
           <span className="stat-number">{kit.haveCount || 0}</span>
           <span className="stat-label">I Have</span>
         </div>
@@ -125,7 +128,7 @@ const MyKit = () => {
           className={`stat clickable ${activeTab === 'need' ? 'active' : ''}`}
           onClick={() => setActiveTab('need')}
         >
-          <div className="stat-icon">🛒</div>
+          <ShoppingCart className="stat-icon" size={28} strokeWidth={2} />
           <span className="stat-number">{kit.needCount || 0}</span>
           <span className="stat-label">I Need</span>
         </div>
@@ -150,14 +153,22 @@ const MyKit = () => {
                   onClick={() => handleToggle(product.kitItemId, activeTab === 'have')}
                   title={activeTab === 'have' ? 'Move to Need' : 'Move to Have'}
                 >
-                  {activeTab === 'have' ? '✓' : '+'}
+                  {activeTab === 'have' ? (
+                    <Check size={20} strokeWidth={2.5} />
+                  ) : (
+                    <Plus size={20} strokeWidth={2.5} />
+                  )}
                 </button>
               </div>
             ))}
           </div>
         ) : (
           <div className="empty-state">
-            <div className="empty-icon">{activeTab === 'have' ? '💄' : '🛍️'}</div>
+            {activeTab === 'have' ? (
+              <Sparkles className="empty-icon" size={56} strokeWidth={1.5} />
+            ) : (
+              <ShoppingCart className="empty-icon" size={56} strokeWidth={1.5} />
+            )}
             <p className="empty-title">
               {activeTab === 'have' ? 'No products yet' : 'Nothing to buy'}
             </p>

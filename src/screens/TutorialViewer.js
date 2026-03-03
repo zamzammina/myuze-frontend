@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getTutorial, uploadResultPhoto, addToKit, deleteStep } from '../services/api';
+import { X, Trash2, Camera, ChevronLeft, ChevronRight, Check, Plus } from 'lucide-react';
 import '../styles/TutorialViewer.css';
 
 const TutorialViewer = () => {
@@ -113,7 +114,7 @@ const TutorialViewer = () => {
     return (
       <div className="camera-screen fade-in">
         <div className="camera-content">
-          <div className="camera-icon-large">📸</div>
+          <Camera className="camera-icon-large" size={72} strokeWidth={1.5} />
           <h2>Show off your look!</h2>
           <p className="camera-hint">Take a photo of your final result</p>
           
@@ -137,7 +138,7 @@ const TutorialViewer = () => {
               </>
             ) : (
               <>
-                <span className="button-icon">📷</span>
+                <Camera size={20} strokeWidth={2} />
                 Open Camera
               </>
             )}
@@ -161,7 +162,7 @@ const TutorialViewer = () => {
     <div className="tutorial-viewer fade-in">
       <div className="viewer-header">
         <button className="close-button btn-ripple" onClick={() => navigate(`/tutorial/${id}`)}>
-          ✕
+          <X size={20} strokeWidth={2} />
         </button>
         
         <button 
@@ -169,7 +170,7 @@ const TutorialViewer = () => {
           onClick={() => handleDeleteStep(step.id)}
           title="Delete this step"
         >
-          🗑️
+          <Trash2 size={18} strokeWidth={2} />
         </button>
       </div>
 
@@ -208,7 +209,7 @@ const TutorialViewer = () => {
                   onClick={() => handleAddProductToKit(sp.product)}
                   title="Add to my kit"
                 >
-                  +
+                  <Plus size={18} strokeWidth={2.5} />
                 </button>
               </div>
             ))}
@@ -222,7 +223,7 @@ const TutorialViewer = () => {
           onClick={handlePrev}
           disabled={currentStep === 0}
         >
-          <span className="nav-arrow">←</span>
+          <ChevronLeft className="nav-arrow" size={20} strokeWidth={2} />
           Previous
         </button>
         <button 
@@ -232,11 +233,11 @@ const TutorialViewer = () => {
           {currentStep < tutorial.steps.length - 1 ? (
             <>
               Next
-              <span className="nav-arrow">→</span>
+              <ChevronRight className="nav-arrow" size={20} strokeWidth={2} />
             </>
           ) : (
             <>
-              <span className="button-icon">✓</span>
+              <Check size={20} strokeWidth={2} />
               Finish
             </>
           )}

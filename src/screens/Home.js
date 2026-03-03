@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getTutorials, getFolders, createTutorial, checkProgress, createFolder } from '../services/api';
 import AddTutorialModal from '../components/AddTutorialModal';
+import { Plus, ChevronDown } from 'lucide-react';
 import '../styles/Home.css';
 
 const Home = () => {
@@ -178,7 +179,11 @@ const Home = () => {
         <div className="folders-section slide-up">
           <div className="section-header" onClick={() => setShowFolders(!showFolders)}>
             <h2>Folders</h2>
-            <span className={`dropdown-arrow ${showFolders ? 'open' : ''}`}>▼</span>
+            <ChevronDown 
+              className={`dropdown-arrow ${showFolders ? 'open' : ''}`} 
+              size={18} 
+              strokeWidth={2}
+            />
           </div>
 
           {showFolders && (
@@ -187,7 +192,7 @@ const Home = () => {
               {!showNewFolderInput ? (
                 <div className="folder-card new-folder" onClick={() => setShowNewFolderInput(true)}>
                   <div className="folder-thumbnail-grid empty">
-                    <div className="add-icon">+</div>
+                    <Plus className="add-icon" size={48} strokeWidth={1.5} />
                   </div>
                   <p className="folder-name">New Folder</p>
                 </div>
@@ -282,7 +287,7 @@ const Home = () => {
         onClick={() => setShowAddModal(true)}
         disabled={processing}
       >
-        +
+        <Plus size={28} strokeWidth={2} />
       </button>
 
       {showAddModal && (

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getTutorials, getKit, getFolders } from '../services/api';
+import { BookOpen, Sparkles, Folder, Star, User, Edit3, FolderOpen, Bell } from 'lucide-react';
 import '../styles/Profile.css';
 
 const Profile = () => {
@@ -66,7 +67,7 @@ const Profile = () => {
       <div className="profile-header">
         <div className="profile-avatar">
           <div className="avatar-circle">
-            <span className="avatar-icon">👤</span>
+            <User className="avatar-icon" size={48} strokeWidth={1.5} />
           </div>
           <div className="avatar-ring"></div>
         </div>
@@ -76,22 +77,22 @@ const Profile = () => {
 
       <div className="stats-grid">
         <div className="stat-card clickable" onClick={() => navigate('/')}>
-          <div className="stat-icon">📚</div>
+          <BookOpen className="stat-icon" size={28} strokeWidth={1.5} />
           <span className="stat-number">{stats.tutorialCount}</span>
           <span className="stat-label">Tutorials Saved</span>
         </div>
         <div className="stat-card clickable" onClick={() => navigate('/kit?tab=have')}>
-          <div className="stat-icon">💄</div>
+          <Sparkles className="stat-icon" size={28} strokeWidth={1.5} />
           <span className="stat-number">{stats.productsOwned}</span>
           <span className="stat-label">Products Owned</span>
         </div>
         <div className="stat-card clickable" onClick={() => navigate('/')}>
-          <div className="stat-icon">📁</div>
+          <Folder className="stat-icon" size={28} strokeWidth={1.5} />
           <span className="stat-number">{stats.foldersCount}</span>
           <span className="stat-label">Folders</span>
         </div>
         <div className="stat-card clickable" onClick={handleLooksCompleted}>
-          <div className="stat-icon">✨</div>
+          <Star className="stat-icon" size={28} strokeWidth={1.5} />
           <span className="stat-number">{stats.completedLooks}</span>
           <span className="stat-label">Looks Completed</span>
         </div>
@@ -101,15 +102,15 @@ const Profile = () => {
         <div className="profile-section">
           <h3>Settings</h3>
           <button className="settings-button btn-ripple">
-            <span className="settings-icon">✏️</span>
+            <Edit3 className="settings-icon" size={18} strokeWidth={2} />
             Edit Profile
           </button>
           <button className="settings-button btn-ripple">
-            <span className="settings-icon">📁</span>
+            <FolderOpen className="settings-icon" size={18} strokeWidth={2} />
             Manage Folders
           </button>
           <button className="settings-button btn-ripple">
-            <span className="settings-icon">🔔</span>
+            <Bell className="settings-icon" size={18} strokeWidth={2} />
             Notifications
           </button>
         </div>

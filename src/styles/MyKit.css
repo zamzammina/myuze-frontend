@@ -31,6 +31,9 @@
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-base);
   letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .add-product-btn:hover {
@@ -98,18 +101,17 @@
   box-shadow: var(--shadow-md);
 }
 
-.stat.active .stat-icon,
-.stat.active .stat-number,
-.stat.active .stat-label {
-  color: var(--accent-deep);
-}
-
 .stat-icon {
-  font-size: 1.75rem;
+  color: var(--accent-primary);
+  opacity: 0.6;
   margin-bottom: 0.625rem;
   display: block;
   transition: all var(--transition-base);
-  opacity: 0.6;
+}
+
+.stat.active .stat-icon {
+  color: var(--accent-deep);
+  opacity: 1;
 }
 
 .stat:hover .stat-icon {
@@ -127,11 +129,19 @@
   letter-spacing: -0.02em;
 }
 
+.stat.active .stat-number {
+  color: var(--accent-deep);
+}
+
 .stat-label {
   font-size: 0.8125rem;
   color: var(--text-secondary);
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.01em;
+}
+
+.stat.active .stat-label {
+  color: var(--accent-deep);
 }
 
 .kit-content {
@@ -204,7 +214,6 @@
   border: none;
   background: rgba(198, 173, 149, 0.2);
   color: var(--text-primary);
-  font-size: 1.125rem;
   cursor: pointer;
   flex-shrink: 0;
   transition: all var(--transition-base);
@@ -243,9 +252,9 @@
 }
 
 .empty-icon {
-  font-size: 3.5rem;
-  margin-bottom: 1.25rem;
+  color: var(--accent-primary);
   opacity: 0.4;
+  margin-bottom: 1.25rem;
 }
 
 .empty-title {

@@ -48,7 +48,7 @@
   max-width: 120px;
 }
 
-/* Elegant top indicator - thinner and softer */
+/* Elegant top indicator */
 .nav-item::before {
   content: '';
   position: absolute;
@@ -57,7 +57,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: var(--accent-primary);
+  background: var(--accent-deep);
   border-radius: 2px;
   transition: width var(--transition-base);
 }
@@ -66,17 +66,16 @@
   width: 40%;
 }
 
-/* SVG Icons placeholder - will replace with actual icons */
+/* Icon Styling - Clean & Professional */
 .nav-icon {
-  font-size: 1.375rem;
+  color: var(--accent-primary);
+  opacity: 0.6;
   transition: all var(--transition-base);
-  opacity: 0.5;
-  filter: grayscale(100%);
 }
 
 .nav-item.active .nav-icon {
+  color: var(--accent-deep);
   opacity: 1;
-  filter: grayscale(0%);
   transform: translateY(-2px);
 }
 

@@ -7,6 +7,7 @@ import {
   getFolders,
   createFolder
 } from '../services/api';
+import { ArrowLeft, MoreVertical, FolderOpen, Trash2, ExternalLink, Play } from 'lucide-react';
 import '../styles/TutorialDetail.css';
 
 const TutorialDetail = () => {
@@ -123,24 +124,25 @@ const TutorialDetail = () => {
     <div className="tutorial-detail fade-in">
       <div className="detail-header">
         <button className="back-button btn-ripple" onClick={() => navigate('/')}>
-          ← Back
+          <ArrowLeft size={18} strokeWidth={2} />
+          Back
         </button>
         
         <button 
           className="menu-button btn-ripple"
           onClick={() => setShowMenu(!showMenu)}
         >
-          ⋮
+          <MoreVertical size={20} strokeWidth={2} />
         </button>
 
         {showMenu && (
           <div className="menu-dropdown slide-up">
             <button onClick={() => { setShowFolderSelect(true); setShowMenu(false); }} className="btn-ripple">
-              <span className="menu-icon">📁</span>
+              <FolderOpen className="menu-icon" size={18} strokeWidth={2} />
               Move to Folder
             </button>
             <button onClick={handleDeleteTutorial} className="danger btn-ripple">
-              <span className="menu-icon">🗑️</span>
+              <Trash2 className="menu-icon" size={18} strokeWidth={2} />
               Delete Tutorial
             </button>
           </div>
@@ -159,7 +161,7 @@ const TutorialDetail = () => {
                     className="folder-option btn-ripple"
                     onClick={() => handleMoveToFolder(null)}
                   >
-                    <span className="folder-icon">📂</span>
+                    <FolderOpen className="folder-icon" size={18} strokeWidth={2} />
                     No Folder
                   </button>
                   {folders.map(folder => (
@@ -168,7 +170,7 @@ const TutorialDetail = () => {
                       className="folder-option btn-ripple"
                       onClick={() => handleMoveToFolder(folder.id)}
                     >
-                      <span className="folder-icon">📁</span>
+                      <FolderOpen className="folder-icon" size={18} strokeWidth={2} />
                       {folder.name}
                     </button>
                   ))}
@@ -241,7 +243,7 @@ const TutorialDetail = () => {
         
         {tutorial.folder && (
           <span className="current-folder">
-            <span className="folder-icon">📁</span>
+            <FolderOpen className="folder-icon" size={16} strokeWidth={2} />
             {tutorial.folder.name}
           </span>
         )}
@@ -251,7 +253,7 @@ const TutorialDetail = () => {
           className="original-video-link btn-ripple"
           onClick={handleOpenOriginal}
         >
-          <span className="link-icon">🔗</span>
+          <ExternalLink className="link-icon" size={18} strokeWidth={2} />
           View Original Video
         </button>
 
@@ -259,7 +261,7 @@ const TutorialDetail = () => {
           className="start-button btn-ripple"
           onClick={() => navigate(`/tutorial/${id}/view`)}
         >
-          <span className="button-icon">▶️</span>
+          <Play className="button-icon" size={20} strokeWidth={2} fill="currentColor" />
           Start Tutorial
         </button>
         
@@ -280,7 +282,6 @@ const TutorialDetail = () => {
       <div className="products-section">
         <h2>Products Used</h2>
         <div className="coming-soon-box">
-          <p className="coming-soon-icon">🔮</p>
           <p className="coming-soon-text">Product detection coming soon!</p>
           <p className="coming-soon-subtext">We're working on AI-powered product recognition</p>
         </div>
