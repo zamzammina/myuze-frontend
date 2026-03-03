@@ -1,21 +1,37 @@
 .home-screen {
   padding-bottom: 5rem;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-.home-header {
-  padding: 1rem 0;
-  margin-bottom: 1.5rem;
+/* Hero Section - Modern gradient */
+.hero-section {
+  background: linear-gradient(135deg, var(--dark-brown) 0%, var(--medium-brown) 100%);
+  padding: 3rem 1.5rem;
+  margin: -1rem -1rem 2rem -1rem;
+  text-align: center;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  box-shadow: var(--shadow-lg);
 }
 
-.home-header h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--dark-brown);
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--white);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--beige);
+  font-weight: var(--font-weight-normal);
 }
 
 /* Folders Section */
 .folders-section {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  padding: 0 1rem;
 }
 
 .section-header {
@@ -29,14 +45,14 @@
 
 .section-header h2 {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--text-dark);
 }
 
 .dropdown-arrow {
   font-size: 0.8rem;
   color: var(--text-light);
-  transition: transform 0.3s;
+  transition: transform var(--transition-base);
 }
 
 .dropdown-arrow.open {
@@ -52,21 +68,31 @@
 
 .folder-card {
   background: var(--white);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   padding: 1rem;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid var(--beige);
+  transition: all var(--transition-base);
+  border: 2px solid var(--cream);
+  box-shadow: var(--shadow-sm);
 }
 
 .folder-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--beige);
+}
+
+.folder-card:active {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .folder-card.new-folder {
-  border: 2px dashed var(--dark-brown);
-  background: var(--cream);
+  border: 2px dashed var(--medium-brown);
+  background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+}
+
+.folder-card.new-folder:hover {
+  background: linear-gradient(135deg, var(--beige) 0%, var(--cream) 100%);
 }
 
 .folder-thumbnail-grid {
@@ -74,10 +100,11 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 4px;
   aspect-ratio: 1;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   overflow: hidden;
   margin-bottom: 0.75rem;
-  background: var(--beige);
+  background: var(--cream);
+  box-shadow: var(--shadow-sm);
 }
 
 .folder-thumbnail {
@@ -90,6 +117,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.folder-card:hover .folder-thumbnail img {
+  transform: scale(1.05);
 }
 
 .folder-thumbnail.empty {
@@ -100,18 +132,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--cream);
+  background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%);
 }
 
 .add-icon {
   font-size: 3rem;
-  color: var(--dark-brown);
+  color: var(--medium-brown);
   font-weight: 300;
 }
 
 .folder-name {
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--text-dark);
   margin-bottom: 0.25rem;
 }
@@ -119,6 +151,7 @@
 .folder-count {
   font-size: 0.85rem;
   color: var(--text-light);
+  font-weight: var(--font-weight-normal);
 }
 
 .folder-card.new-folder-input {
@@ -132,14 +165,17 @@
   width: 100%;
   padding: 0.75rem;
   border: 2px solid var(--beige);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 1rem;
   margin-bottom: 0.75rem;
+  background: var(--white);
+  transition: all var(--transition-base);
 }
 
 .folder-card.new-folder-input input:focus {
   outline: none;
   border-color: var(--dark-brown);
+  box-shadow: 0 0 0 3px rgba(44, 37, 32, 0.1);
 }
 
 .folder-input-actions {
@@ -151,10 +187,11 @@
   flex: 1;
   padding: 0.5rem;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 1.2rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
 }
 
 .folder-input-actions button:first-child {
@@ -164,6 +201,7 @@
 
 .folder-input-actions button:first-child:hover {
   background: var(--medium-brown);
+  box-shadow: var(--shadow-md);
 }
 
 .folder-input-actions button:last-child {
@@ -183,6 +221,7 @@
 /* Tutorials Section */
 .tutorials-section {
   margin-top: 2rem;
+  padding: 0 1rem;
 }
 
 .back-to-all {
@@ -190,12 +229,14 @@
   border: none;
   color: var(--dark-brown);
   font-size: 0.95rem;
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
   padding: 0.5rem 0;
   margin-bottom: 1rem;
 }
 
 .back-to-all:hover {
+  color: var(--medium-brown);
   text-decoration: underline;
 }
 
@@ -207,22 +248,32 @@
 
 .tutorial-card {
   background: var(--white);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid var(--beige);
+  transition: all var(--transition-base);
+  border: 1px solid var(--cream);
+  box-shadow: var(--shadow-sm);
 }
 
 .tutorial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.tutorial-card:active {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .tutorial-thumbnail {
   width: 100%;
   aspect-ratio: 9/16;
   object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.tutorial-card:hover .tutorial-thumbnail {
+  transform: scale(1.05);
 }
 
 .tutorial-info {
@@ -231,7 +282,7 @@
 
 .tutorial-info h3 {
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--text-dark);
   margin-bottom: 0.5rem;
   line-height: 1.3;
@@ -240,31 +291,37 @@
 .folder-tag {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background: var(--beige);
-  border-radius: 12px;
+  background: linear-gradient(135deg, var(--beige) 0%, var(--cream) 100%);
+  border-radius: var(--radius-full);
   font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
   color: var(--dark-brown);
 }
 
 .add-button {
   position: fixed;
-  bottom: 5rem;
+  bottom: 5.5rem;
   right: 1.5rem;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background-color: var(--dark-brown);
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--dark-brown) 0%, var(--medium-brown) 100%);
   color: var(--white);
   font-size: 2rem;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: transform 0.2s;
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-base);
   z-index: 100;
 }
 
 .add-button:hover {
   transform: scale(1.1);
+  box-shadow: 0 16px 40px rgba(44, 37, 32, 0.25);
+}
+
+.add-button:active {
+  transform: scale(1.05);
 }
 
 .add-button:disabled {
@@ -288,7 +345,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(44, 37, 32, 0.9);
+  background-color: rgba(44, 37, 32, 0.95);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -296,12 +354,13 @@
 }
 
 .processing-modal {
-  background-color: var(--white);
-  border-radius: 16px;
+  background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+  border-radius: var(--radius-xl);
   padding: 3rem 2rem;
   text-align: center;
   max-width: 400px;
   margin: 0 1rem;
+  box-shadow: var(--shadow-xl);
 }
 
 .spinner {
@@ -320,7 +379,7 @@
 
 .processing-modal h2 {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--text-dark);
   margin-bottom: 1rem;
 }
@@ -338,7 +397,7 @@
 
 .progress-text {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--dark-brown);
   margin-bottom: 0.75rem !important;
 }
@@ -347,29 +406,38 @@
   width: 100%;
   height: 8px;
   background-color: var(--beige);
-  border-radius: 4px;
+  border-radius: var(--radius-full);
   overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .progress-fill {
   height: 100%;
-  background-color: var(--dark-brown);
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, var(--dark-brown) 0%, var(--medium-brown) 100%);
+  transition: width var(--transition-base);
+  border-radius: var(--radius-full);
 }
 
 .status-text {
   color: var(--text-light);
   font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
 }
 
 .processing-tip {
   color: var(--medium-brown);
   font-size: 0.85rem;
   font-style: italic;
+  font-weight: var(--font-weight-normal);
 }
 
 @media (max-width: 480px) {
   .add-button {
     right: 1rem;
+    bottom: 5rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
   }
 }

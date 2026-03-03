@@ -87,7 +87,6 @@ const TutorialViewer = () => {
     try {
       await deleteStep(stepId);
       await loadTutorial();
-      // If we deleted the current step and it was the last one, go back
       if (currentStep >= tutorial.steps.length - 1) {
         setCurrentStep(Math.max(0, currentStep - 1));
       }
@@ -99,53 +98,74 @@ const TutorialViewer = () => {
   };
 
   if (loading || !tutorial) {
-    return <div className="loading">Loading...</div>;
+    return (
+      <div className="tutorial-viewer">
+        <div className="skeleton" style={{ height: '60px', marginBottom: '1rem', borderRadius: 'var(--radius-lg)' }} />
+        <div className="skeleton" style={{ aspectRatio: '9/16', borderRadius: 'var(--radius-lg)', marginBottom: '1rem' }} />
+        <div className="skeleton" style={{ height: '60px', borderRadius: 'var(--radius-lg)' }} />
+      </div>
+    );
   }
 
   const step = tutorial.steps[currentStep];
 
   if (showCamera) {
     return (
-      <div className="camera-screen">
-        <h2>Take a photo of your result!</h2>
-        <p className="camera-hint">Show off your final look!</p>
-        
-        <input
-          type="file"
-          accept="image/*"
-          capture="environment"
-          onChange={handlePhotoCapture}
-          style={{ display: 'none' }}
-          id="camera-input"
-          disabled={uploadingPhoto}
-        />
-        <label 
-          htmlFor="camera-input" 
-          className={`camera-button ${uploadingPhoto ? 'disabled' : ''}`}
-        >
-          {uploadingPhoto ? 'Uploading...' : '📸 Open Camera'}
-        </label>
-        
-        <button 
-          className="skip-button"
-          onClick={() => navigate(`/tutorial/${id}`)}
-          disabled={uploadingPhoto}
-        >
-          Skip for now
-        </button>
+      <div className="camera-screen fade-in">
+        <div className="camera-content">
+          <div className="camera-icon-large">📸</div>
+          <h2>Show off your look!</h2>
+          <p className="camera-hint">Take a photo of your final result</p>
+          
+          <input
+            type="file"
+            accept="image/*"
+            capture="environment"
+            onChange={handlePhotoCapture}
+            style={{ display: 'none' }}
+            id="camera-input"
+            disabled={uploadingPhoto}
+          />
+          <label 
+            htmlFor="camera-input" 
+            className={`camera-button btn-ripple ${uploadingPhoto ? 'disabled' : ''}`}
+          >
+            {uploadingPhoto ? (
+              <>
+                <div className="spinner-small"></div>
+                Uploading...
+              </>
+            ) : (
+              <>
+                <span className="button-icon">📷</span>
+                Open Camera
+              </>
+            )}
+          </label>
+          
+          <button 
+            className="skip-button btn-ripple"
+            onClick={() => navigate(`/tutorial/${id}`)}
+            disabled={uploadingPhoto}
+          >
+            Skip for now
+          </button>
+        </div>
       </div>
     );
   }
 
+  const progressPercentage = ((currentStep + 1) / tutorial.steps.length) * 100;
+
   return (
-    <div className="tutorial-viewer">
+    <div className="tutorial-viewer fade-in">
       <div className="viewer-header">
-        <button className="close-button" onClick={() => navigate(`/tutorial/${id}`)}>
+        <button className="close-button btn-ripple" onClick={() => navigate(`/tutorial/${id}`)}>
           ✕
         </button>
         
         <button 
-          className="delete-step-button"
+          className="delete-step-button btn-ripple"
           onClick={() => handleDeleteStep(step.id)}
           title="Delete this step"
         >
@@ -153,20 +173,30 @@ const TutorialViewer = () => {
         </button>
       </div>
 
-      <div className="step-counter">
-        Step {currentStep + 1} of {tutorial.steps.length}
+      <div className="progress-container">
+        <div className="step-counter">
+          Step {currentStep + 1} of {tutorial.steps.length}
+        </div>
+        <div className="progress-track">
+          <div 
+            className="progress-bar-fill" 
+            style={{ width: `${progressPercentage}%` }}
+          />
+        </div>
       </div>
 
       <div className="step-content">
-        <img 
-          src={step.gifUrl} 
-          alt={`Step ${currentStep + 1}`}
-          className="step-gif"
-        />
+        <div className="gif-container">
+          <img 
+            src={step.gifUrl} 
+            alt={`Step ${currentStep + 1}`}
+            className="step-gif"
+          />
+        </div>
 
         {step.stepProducts && step.stepProducts.length > 0 && (
-          <div className="step-products">
-            <h3>Products for this step:</h3>
+          <div className="step-products slide-up">
+            <h3>Products for this step</h3>
             {step.stepProducts.map(sp => (
               <div key={sp.id} className="step-product">
                 <div className="product-details">
@@ -174,7 +204,7 @@ const TutorialViewer = () => {
                   {sp.product.brand && <span className="product-brand">{sp.product.brand}</span>}
                 </div>
                 <button 
-                  className="add-to-kit-btn"
+                  className="add-to-kit-btn btn-ripple"
                   onClick={() => handleAddProductToKit(sp.product)}
                   title="Add to my kit"
                 >
@@ -188,17 +218,28 @@ const TutorialViewer = () => {
 
       <div className="navigation-controls">
         <button 
-          className="nav-button"
+          className="nav-button btn-ripple"
           onClick={handlePrev}
           disabled={currentStep === 0}
         >
-          ← Previous
+          <span className="nav-arrow">←</span>
+          Previous
         </button>
         <button 
-          className="nav-button primary"
+          className="nav-button primary btn-ripple"
           onClick={handleNext}
         >
-          {currentStep < tutorial.steps.length - 1 ? 'Next →' : 'Finish'}
+          {currentStep < tutorial.steps.length - 1 ? (
+            <>
+              Next
+              <span className="nav-arrow">→</span>
+            </>
+          ) : (
+            <>
+              <span className="button-icon">✓</span>
+              Finish
+            </>
+          )}
         </button>
       </div>
     </div>

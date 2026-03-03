@@ -28,6 +28,7 @@ const Home = () => {
     if (filterParam === 'completed') {
       setFilter('completed');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadData = async () => {
@@ -59,8 +60,6 @@ const Home = () => {
     const matchesFilter = filter === 'all' || (filter === 'completed' && t.resultPhotoUrl);
     return matchesFolder && matchesFilter;
   });
-
-  //const tutorialsWithoutFolder = tutorials.filter(t => !t.folderId);
 
   const getFolderTutorials = (folderId) => {
     return tutorials.filter(t => t.folderId === folderId);
@@ -154,18 +153,29 @@ const Home = () => {
   };
 
   if (loading) {
-    return <div className="loading">Loading...</div>;
+    return (
+      <div className="home-screen">
+        <div className="hero-section skeleton" style={{ height: '120px', marginBottom: '2rem' }} />
+        <div className="folders-grid">
+          {[1, 2, 3, 4].map(i => (
+            <div key={i} className="skeleton" style={{ height: '200px' }} />
+          ))}
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="home-screen">
-      <header className="home-header">
-        <h1>Myuzè</h1>
-      </header>
+    <div className="home-screen fade-in">
+      {/* Hero Section */}
+      <div className="hero-section">
+        <h1 className="hero-title">Myuzè</h1>
+        <p className="hero-subtitle">Master every look, step by step</p>
+      </div>
 
       {/* Folders Section */}
       {folders.length > 0 && (
-        <div className="folders-section">
+        <div className="folders-section slide-up">
           <div className="section-header" onClick={() => setShowFolders(!showFolders)}>
             <h2>Folders</h2>
             <span className={`dropdown-arrow ${showFolders ? 'open' : ''}`}>▼</span>
@@ -192,10 +202,10 @@ const Home = () => {
                     autoFocus
                   />
                   <div className="folder-input-actions">
-                    <button onClick={handleCreateFolder} disabled={creatingFolder}>
+                    <button onClick={handleCreateFolder} disabled={creatingFolder} className="btn-ripple">
                       {creatingFolder ? '...' : '✓'}
                     </button>
-                    <button onClick={() => { setShowNewFolderInput(false); setNewFolderName(''); }}>
+                    <button onClick={() => { setShowNewFolderInput(false); setNewFolderName(''); }} className="btn-ripple">
                       ✕
                     </button>
                   </div>
@@ -242,10 +252,11 @@ const Home = () => {
         )}
         
         <div className="tutorials-grid">
-          {filteredTutorials.map(tutorial => (
+          {filteredTutorials.map((tutorial, index) => (
             <div 
               key={tutorial.id} 
-              className="tutorial-card"
+              className="tutorial-card slide-up"
+              style={{ animationDelay: `${index * 50}ms` }}
               onClick={() => navigate(`/tutorial/${tutorial.id}`)}
             >
               {tutorial.steps && tutorial.steps[0] && (
@@ -267,7 +278,7 @@ const Home = () => {
       </div>
 
       <button 
-        className="add-button"
+        className="add-button btn-ripple"
         onClick={() => setShowAddModal(true)}
         disabled={processing}
       >
@@ -284,8 +295,8 @@ const Home = () => {
       )}
 
       {processing && (
-        <div className="processing-overlay">
-          <div className="processing-modal">
+        <div className="processing-overlay fade-in">
+          <div className="processing-modal slide-up">
             <div className="spinner"></div>
             <h2>Creating Tutorial...</h2>
             {progress.total > 0 && (

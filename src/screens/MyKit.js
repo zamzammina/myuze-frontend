@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { getKit, toggleKitItem, addProductToStep, getTutorials, addToKit } from '../services/api';
 import '../styles/MyKit.css';
 
 const MyKit = () => {
-  const location = useLocation();
   const [kit, setKit] = useState({ have: [], need: [] });
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('have');
@@ -15,14 +13,13 @@ const MyKit = () => {
   useEffect(() => {
     loadKit();
     
-    // Check URL for tab parameter using useLocation
-    const params = new URLSearchParams(location.search);
+    const params = new URLSearchParams(window.location.search);
     const tabParam = params.get('tab');
-    console.log('Tab parameter:', tabParam, 'Full URL:', location.search);
     if (tabParam === 'have' || tabParam === 'need') {
       setActiveTab(tabParam);
     }
-  }, [location.search]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const loadKit = async () => {
     try {
@@ -86,62 +83,70 @@ const MyKit = () => {
   };
 
   if (loading) {
-    return <div className="loading">Loading your kit...</div>;
+    return (
+      <div className="mykit-screen">
+        <div className="kit-header">
+          <div className="skeleton" style={{ width: '120px', height: '32px' }} />
+          <div className="skeleton" style={{ width: '120px', height: '40px', borderRadius: 'var(--radius-md)' }} />
+        </div>
+        <div className="kit-stats">
+          <div className="skeleton" style={{ height: '100px', borderRadius: 'var(--radius-lg)' }} />
+          <div className="skeleton" style={{ height: '100px', borderRadius: 'var(--radius-lg)' }} />
+        </div>
+      </div>
+    );
   }
 
   const displayProducts = activeTab === 'have' ? kit.have : kit.need;
 
   return (
-    <div className="mykit-screen">
+    <div className="mykit-screen fade-in">
       <div className="kit-header">
         <h1>My Kit</h1>
         <button 
-          className="add-product-btn"
+          className="add-product-btn btn-ripple"
           onClick={() => setShowAddProduct(true)}
         >
-          + Add Product
+          + Add
         </button>
       </div>
 
+      {/* Clickable stat boxes */}
       <div className="kit-stats">
         <div 
-          className="stat clickable" 
+          className={`stat clickable ${activeTab === 'have' ? 'active' : ''}`}
           onClick={() => setActiveTab('have')}
-          style={{ 
-            borderColor: activeTab === 'have' ? 'var(--dark-brown)' : 'var(--beige)',
-            borderWidth: '2px',
-            borderStyle: 'solid'
-          }}
         >
+          <div className="stat-icon">✓</div>
           <span className="stat-number">{kit.haveCount || 0}</span>
-          <span className="stat-label">Products I Have</span>
+          <span className="stat-label">I Have</span>
         </div>
         <div 
-          className="stat clickable"
+          className={`stat clickable ${activeTab === 'need' ? 'active' : ''}`}
           onClick={() => setActiveTab('need')}
-          style={{ 
-            borderColor: activeTab === 'need' ? 'var(--dark-brown)' : 'var(--beige)',
-            borderWidth: '2px',
-            borderStyle: 'solid'
-          }}
         >
+          <div className="stat-icon">🛒</div>
           <span className="stat-number">{kit.needCount || 0}</span>
-          <span className="stat-label">Products I Need</span>
+          <span className="stat-label">I Need</span>
         </div>
       </div>
 
       <div className="kit-content">
-        <h2>{activeTab === 'have' ? 'I Have' : 'I Need'} ({activeTab === 'have' ? kit.haveCount : kit.needCount || 0})</h2>
+        <h2>{activeTab === 'have' ? 'Products I Have' : 'Products I Need'}</h2>
         {displayProducts && displayProducts.length > 0 ? (
           <div className="products-list">
-            {displayProducts.map(product => (
-              <div key={product.kitItemId} className={`kit-item ${activeTab}`}>
+            {displayProducts.map((product, index) => (
+              <div 
+                key={product.kitItemId} 
+                className={`kit-item ${activeTab} slide-up`}
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
                 <div className="product-info">
                   <p className="product-name">{product.name}</p>
                   {product.brand && <p className="product-brand">{product.brand}</p>}
                 </div>
                 <button
-                  className="toggle-button"
+                  className="toggle-button btn-ripple"
                   onClick={() => handleToggle(product.kitItemId, activeTab === 'have')}
                   title={activeTab === 'have' ? 'Move to Need' : 'Move to Have'}
                 >
@@ -151,15 +156,23 @@ const MyKit = () => {
             ))}
           </div>
         ) : (
-          <p className="empty-message">
-            {activeTab === 'have' ? 'No products yet' : 'No products to buy'}
-          </p>
+          <div className="empty-state">
+            <div className="empty-icon">{activeTab === 'have' ? '💄' : '🛍️'}</div>
+            <p className="empty-title">
+              {activeTab === 'have' ? 'No products yet' : 'Nothing to buy'}
+            </p>
+            <p className="empty-subtitle">
+              {activeTab === 'have' 
+                ? 'Add products from tutorials or manually' 
+                : 'Move products here when you need to buy them'}
+            </p>
+          </div>
         )}
       </div>
 
       {showAddProduct && (
-        <div className="modal-overlay" onClick={() => !adding && setShowAddProduct(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay fade-in" onClick={() => !adding && setShowAddProduct(false)}>
+          <div className="modal-content slide-up" onClick={(e) => e.stopPropagation()}>
             <h2>Add Product to Kit</h2>
             
             <div className="form-group">
@@ -186,14 +199,14 @@ const MyKit = () => {
 
             <div className="modal-actions">
               <button 
-                className="btn-secondary"
+                className="btn-secondary btn-ripple"
                 onClick={() => setShowAddProduct(false)}
                 disabled={adding}
               >
                 Cancel
               </button>
               <button 
-                className="btn-primary"
+                className="btn-primary btn-ripple"
                 onClick={handleAddProduct}
                 disabled={adding}
               >

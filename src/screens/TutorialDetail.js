@@ -105,7 +105,14 @@ const TutorialDetail = () => {
   };
 
   if (loading) {
-    return <div className="loading">Loading tutorial...</div>;
+    return (
+      <div className="tutorial-detail">
+        <div className="skeleton" style={{ height: '40px', width: '100px', marginBottom: '1rem', borderRadius: 'var(--radius-md)' }} />
+        <div className="skeleton" style={{ aspectRatio: '9/16', borderRadius: 'var(--radius-lg)', marginBottom: '1rem' }} />
+        <div className="skeleton" style={{ height: '32px', width: '70%', marginBottom: '1rem' }} />
+        <div className="skeleton" style={{ height: '56px', borderRadius: 'var(--radius-lg)' }} />
+      </div>
+    );
   }
 
   if (!tutorial) {
@@ -113,51 +120,55 @@ const TutorialDetail = () => {
   }
 
   return (
-    <div className="tutorial-detail">
+    <div className="tutorial-detail fade-in">
       <div className="detail-header">
-        <button className="back-button" onClick={() => navigate('/')}>
+        <button className="back-button btn-ripple" onClick={() => navigate('/')}>
           ← Back
         </button>
         
         <button 
-          className="menu-button"
+          className="menu-button btn-ripple"
           onClick={() => setShowMenu(!showMenu)}
         >
           ⋮
         </button>
 
         {showMenu && (
-          <div className="menu-dropdown">
-            <button onClick={() => { setShowFolderSelect(true); setShowMenu(false); }}>
-              📁 Move to Folder
+          <div className="menu-dropdown slide-up">
+            <button onClick={() => { setShowFolderSelect(true); setShowMenu(false); }} className="btn-ripple">
+              <span className="menu-icon">📁</span>
+              Move to Folder
             </button>
-            <button onClick={handleDeleteTutorial} className="danger">
-              🗑️ Delete Tutorial
+            <button onClick={handleDeleteTutorial} className="danger btn-ripple">
+              <span className="menu-icon">🗑️</span>
+              Delete Tutorial
             </button>
           </div>
         )}
       </div>
 
       {showFolderSelect && (
-        <div className="modal-overlay" onClick={() => setShowFolderSelect(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay fade-in" onClick={() => setShowFolderSelect(false)}>
+          <div className="modal-content slide-up" onClick={(e) => e.stopPropagation()}>
             <h2>Move to Folder</h2>
             
             {!showNewFolder ? (
               <>
                 <div className="folder-list">
                   <button 
-                    className="folder-option"
+                    className="folder-option btn-ripple"
                     onClick={() => handleMoveToFolder(null)}
                   >
+                    <span className="folder-icon">📂</span>
                     No Folder
                   </button>
                   {folders.map(folder => (
                     <button
                       key={folder.id}
-                      className="folder-option"
+                      className="folder-option btn-ripple"
                       onClick={() => handleMoveToFolder(folder.id)}
                     >
+                      <span className="folder-icon">📁</span>
                       {folder.name}
                     </button>
                   ))}
@@ -181,14 +192,14 @@ const TutorialDetail = () => {
                 />
                 <div className="folder-actions">
                   <button
-                    className="btn-small"
+                    className="btn-small btn-ripple"
                     onClick={handleCreateFolder}
                     disabled={creatingFolder}
                   >
                     {creatingFolder ? 'Creating...' : 'Create'}
                   </button>
                   <button
-                    className="btn-small btn-secondary"
+                    className="btn-small btn-secondary btn-ripple"
                     onClick={() => {
                       setShowNewFolder(false);
                       setNewFolderName('');
@@ -203,9 +214,9 @@ const TutorialDetail = () => {
             
             {!showNewFolder && (
               <button 
-                className="btn-secondary"
+                className="btn-secondary btn-ripple"
                 onClick={() => setShowFolderSelect(false)}
-                style={{ marginTop: '1rem' }}
+                style={{ marginTop: '1rem', width: '100%' }}
               >
                 Close
               </button>
@@ -216,42 +227,52 @@ const TutorialDetail = () => {
 
       <div className="tutorial-header">
         {tutorial.steps && tutorial.steps[0] && (
-          <img 
-            src={tutorial.steps[0].gifUrl} 
-            alt={tutorial.name}
-            className="tutorial-hero"
-          />
+          <div className="hero-image-container">
+            <img 
+              src={tutorial.steps[0].gifUrl} 
+              alt={tutorial.name}
+              className="tutorial-hero"
+            />
+            <div className="hero-gradient"></div>
+          </div>
         )}
         
         <h1>{tutorial.name}</h1>
         
         {tutorial.folder && (
-          <span className="current-folder">📁 {tutorial.folder.name}</span>
+          <span className="current-folder">
+            <span className="folder-icon">📁</span>
+            {tutorial.folder.name}
+          </span>
         )}
 
-        {/* Link to original video right under hero */}
+        {/* Link to original video */}
         <button 
-          className="original-video-link"
+          className="original-video-link btn-ripple"
           onClick={handleOpenOriginal}
         >
-          🔗 View Original Video
+          <span className="link-icon">🔗</span>
+          View Original Video
         </button>
 
         <button 
-          className="start-button"
+          className="start-button btn-ripple"
           onClick={() => navigate(`/tutorial/${id}/view`)}
         >
+          <span className="button-icon">▶️</span>
           Start Tutorial
         </button>
         
         {tutorial.resultPhotoUrl && (
-          <div className="result-photo-section">
+          <div className="result-photo-section slide-up">
             <h3>How this looked on me:</h3>
-            <img 
-              src={tutorial.resultPhotoUrl} 
-              alt="My result"
-              className="result-photo"
-            />
+            <div className="result-photo-container">
+              <img 
+                src={tutorial.resultPhotoUrl} 
+                alt="My result"
+                className="result-photo"
+              />
+            </div>
           </div>
         )}
       </div>
