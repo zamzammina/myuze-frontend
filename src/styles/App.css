@@ -1,33 +1,37 @@
 :root {
-  /* Updated Color Palette - More modern */
-  --dark-brown: #2c2520;
-  --medium-brown: #6b5d54;
-  --light-brown: #a89387;
-  --beige: #d4c5b9;
-  --cream: #f5f3f0;
-  --white: #ffffff;
-  --text-dark: #2c2520;
-  --text-light: #6b5d54;
+  /* New Luxury Color Palette */
+  --bg-primary: #F6F2EE;
+  --bg-secondary: #EAE1D8;
+  --surface-light: #D6C4B3;
+  --surface-medium: #C6AD95;
+  --accent-primary: #B69677;
+  --accent-deep: #886949;
+  --text-primary: #886949;
+  --text-secondary: #B69677;
+  --text-light: #C6AD95;
+  --white: #FFFFFF;
   
-  /* Shadows - Softer, more modern */
-  --shadow-sm: 0 2px 8px rgba(44, 37, 32, 0.08);
-  --shadow-md: 0 4px 16px rgba(44, 37, 32, 0.12);
-  --shadow-lg: 0 8px 24px rgba(44, 37, 32, 0.15);
-  --shadow-xl: 0 12px 32px rgba(44, 37, 32, 0.18);
+  /* Soft Shadows - Diffused & Subtle */
+  --shadow-xs: 0 1px 3px rgba(136, 105, 73, 0.04);
+  --shadow-sm: 0 2px 8px rgba(136, 105, 73, 0.06);
+  --shadow-md: 0 4px 16px rgba(136, 105, 73, 0.08);
+  --shadow-lg: 0 8px 24px rgba(136, 105, 73, 0.1);
+  --shadow-xl: 0 12px 40px rgba(136, 105, 73, 0.12);
   
-  /* Border Radius - Consistent */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
+  /* Soft Border Radius - More Curved */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 28px;
   --radius-full: 9999px;
   
-  /* Transitions - Smooth */
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
-  --transition-slow: 350ms ease;
+  /* Smooth Transitions */
+  --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* Typography */
+  /* Typography - Elegant Weights */
+  --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -45,17 +49,18 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--white);
-  color: var(--text-dark);
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
   line-height: 1.6;
+  letter-spacing: -0.01em;
 }
 
-/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Global transitions */
+/* Global smooth transitions */
 button, a, input, select {
   transition: all var(--transition-base);
 }
@@ -73,20 +78,20 @@ button, a, input, select {
 .skeleton {
   background: linear-gradient(
     90deg,
-    var(--cream) 0%,
-    var(--beige) 50%,
-    var(--cream) 100%
+    rgba(214, 196, 179, 0.2) 0%,
+    rgba(198, 173, 149, 0.3) 50%,
+    rgba(214, 196, 179, 0.2) 100%
   );
   background-size: 1000px 100%;
   animation: shimmer 2s infinite;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 /* Fade in animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -95,14 +100,14 @@ button, a, input, select {
 }
 
 .fade-in {
-  animation: fadeIn var(--transition-slow) ease-out;
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Slide up animation */
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -111,10 +116,10 @@ button, a, input, select {
 }
 
 .slide-up {
-  animation: slideUp var(--transition-slow) ease-out;
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Button ripple effect */
+/* Soft button ripple - more subtle */
 .btn-ripple {
   position: relative;
   overflow: hidden;
@@ -128,12 +133,20 @@ button, a, input, select {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
   transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transition: width 0.5s, height 0.5s;
 }
 
 .btn-ripple:active::after {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
+}
+
+/* Glassmorphism effect for cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
