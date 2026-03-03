@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { getKit, toggleKitItem, addProductToStep, getTutorials, addToKit } from '../services/api';
-import { Check, ShoppingCart, Plus } from 'lucide-react';
 import '../styles/MyKit.css';
 import { Check, ShoppingCart, Plus, Sparkles } from 'lucide-react';
 
