@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_BASE_URL = 'https://myuze-mvp.onrender.com/api';
+const USER_ID = 1;
 
 // Tutorials
 export const checkProgress = async (jobId) => {
@@ -15,13 +16,13 @@ export const createTutorial = async (url, name, platform, numSteps, folderId = n
     platform,
     numSteps,
     folderId,
-    userId: 1
+    userId: USER_ID
   });
   return response.data;
 };
 
 export const getTutorials = async () => {
-  const response = await axios.get(`${API_BASE_URL}/tutorials?userId=1`);
+  const response = await axios.get(`${API_BASE_URL}/tutorials?userId=${USER_ID}`);
   return response.data;
 };
 
@@ -56,14 +57,14 @@ export const deleteStep = async (stepId) => {
 
 // Folders
 export const getFolders = async () => {
-  const response = await axios.get(`${API_BASE_URL}/folders?userId=1`);
+  const response = await axios.get(`${API_BASE_URL}/folders?userId=${USER_ID}`);
   return response.data;
 };
 
 export const createFolder = async (name) => {
   const response = await axios.post(`${API_BASE_URL}/folders`, {
     name,
-    userId: 1
+    userId: USER_ID
   });
   return response.data;
 };
@@ -94,7 +95,7 @@ export const deleteProductFromStep = async (stepId, productId) => {
 
 // Kit
 export const getKit = async () => {
-  const response = await axios.get(`${API_BASE_URL}/kit?userId=1`);
+  const response = await axios.get(`${API_BASE_URL}/kit?userId=${USER_ID}`);
   return response.data;
 };
 
@@ -102,7 +103,7 @@ export const addToKit = async (productId, hasProduct) => {
   const response = await axios.post(`${API_BASE_URL}/kit`, {
     productId,
     hasProduct,
-    userId: 1
+    userId: USER_ID
   });
   return response.data;
 };
@@ -116,7 +117,21 @@ export const toggleKitItem = async (kitItemId, hasProduct) => {
 
 export const checkTutorialCompatibility = async (tutorialId) => {
   const response = await axios.get(
-    `${API_BASE_URL}/kit/tutorials/${tutorialId}/check?userId=1`
+    `${API_BASE_URL}/kit/tutorials/${tutorialId}/check?userId=${USER_ID}`
   );
+  return response.data;
+};
+
+// Categories
+export const getCategories = async () => {
+  const response = await axios.get(`${API_BASE_URL}/categories?userId=${USER_ID}`);
+  return response.data;
+};
+
+export const createCustomCategory = async (name) => {
+  const response = await axios.post(`${API_BASE_URL}/categories`, { 
+    name, 
+    userId: USER_ID 
+  });
   return response.data;
 };

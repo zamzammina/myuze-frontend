@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getKit, toggleKitItem, addProductToStep, getTutorials, addToKit } from '../services/api';
-import '../styles/MyKit.css';
 import { Check, ShoppingCart, Plus, Sparkles } from 'lucide-react';
+import CategoryDropdown from '../components/CategoryDropdown';
+import '../styles/MyKit.css';
 
 const MyKit = () => {
   const [kit, setKit] = useState({ have: [], need: [] });
@@ -9,6 +10,7 @@ const MyKit = () => {
   const [activeTab, setActiveTab] = useState('have');
   const [showAddProduct, setShowAddProduct] = useState(false);
   const [newProduct, setNewProduct] = useState({ name: '', brand: '' });
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [adding, setAdding] = useState(false);
 
   useEffect(() => {
@@ -65,6 +67,7 @@ const MyKit = () => {
             await loadKit();
             setShowAddProduct(false);
             setNewProduct({ name: '', brand: '' });
+            setSelectedCategory(null);
             alert('Product added to your kit!');
           } else {
             alert('Failed to add product');
@@ -204,6 +207,15 @@ const MyKit = () => {
                 value={newProduct.brand}
                 onChange={(e) => setNewProduct({...newProduct, brand: e.target.value})}
                 disabled={adding}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Category</label>
+              <CategoryDropdown
+                value={selectedCategory}
+                onChange={setSelectedCategory}
+                placeholder="Select category"
               />
             </div>
 
