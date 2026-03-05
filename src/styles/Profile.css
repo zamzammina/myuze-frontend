@@ -254,16 +254,16 @@
 
 .about-card {
   background: rgba(214, 196, 179, 0.1);
-  padding: 1.5rem;
+  padding: 1rem 1.25rem;
   border-radius: var(--radius-md);
   border: 1px solid rgba(198, 173, 149, 0.15);
 }
 
 .about-text {
   color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 0.625rem;
-  font-size: 0.9375rem;
+  line-height: 1.5;
+  margin-bottom: 0.375rem;
+  font-size: 0.8125rem;
 }
 
 .about-text:last-child {

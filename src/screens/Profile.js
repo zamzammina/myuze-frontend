@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getTutorials, getKit, getFolders } from '../services/api';
-import { BookOpen, Sparkles, Folder, Star, User, Edit3, FolderOpen, Bell } from 'lucide-react';
+import { BookOpen, Sparkles, Folder, Star, User, Edit3, Bell } from 'lucide-react';
 import '../styles/Profile.css';
 
 const Profile = () => {
@@ -104,10 +104,6 @@ const Profile = () => {
           <button className="settings-button btn-ripple">
             <Edit3 className="settings-icon" size={18} strokeWidth={2} />
             Edit Profile
-          </button>
-          <button className="settings-button btn-ripple">
-            <FolderOpen className="settings-icon" size={18} strokeWidth={2} />
-            Manage Folders
           </button>
           <button className="settings-button btn-ripple">
             <Bell className="settings-icon" size={18} strokeWidth={2} />
