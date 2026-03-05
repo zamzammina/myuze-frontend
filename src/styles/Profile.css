@@ -206,12 +206,28 @@
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+/* Make About section tiny */
+.profile-section:last-child {
+  padding: 0.875rem 1rem;
+  background: rgba(214, 196, 179, 0.05);
+  border: 1px solid rgba(198, 173, 149, 0.1);
+  box-shadow: none;
+}
+
 .profile-section h3 {
   font-size: 1.125rem;
   font-weight: var(--font-weight-medium);
   color: var(--text-primary);
   margin-bottom: 1.25rem;
   letter-spacing: -0.01em;
+}
+
+.profile-section:last-child h3 {
+  font-size: 0.75rem;
+  margin-bottom: 0.625rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .settings-button {
@@ -253,18 +269,18 @@
 }
 
 .about-card {
-  background: rgba(214, 196, 179, 0.08);
-  padding: 0.625rem 0.875rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(198, 173, 149, 0.1);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  border: none;
 }
 
 .about-text {
   color: var(--text-light);
-  line-height: 1.4;
-  margin-bottom: 0.25rem;
-  font-size: 0.75rem;
-  opacity: 0.8;
+  line-height: 1.3;
+  margin-bottom: 0.125rem;
+  font-size: 0.6875rem;
+  opacity: 0.7;
 }
 
 .about-text:last-child {
