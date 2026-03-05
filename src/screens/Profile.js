@@ -42,7 +42,7 @@ const Profile = () => {
   };
 
   const handleLooksCompleted = () => {
-    navigate('/?filter=completed');
+    navigate('/finished-looks');
   };
 
   if (loading) {
